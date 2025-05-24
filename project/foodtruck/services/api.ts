@@ -55,3 +55,16 @@ export const getReceipt = async (orderId: string) => {
   if (!response.ok) throw new Error("Kunde inte hämta kvitto");
   return response.json();
 };
+
+// Hämta en order med id
+export const getOrderById = async (orderId: string) => {
+  const response = await fetch(`${BASE_URL}/${TENANT_ID}/orders/${orderId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-zocom": API_KEY,
+    },
+  });
+  if (!response.ok) throw new Error("Kunde inte hämta order");
+  return response.json();
+};

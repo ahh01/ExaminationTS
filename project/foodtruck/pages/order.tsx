@@ -1,12 +1,14 @@
 // pages/order.tsx
 import React, { useEffect, useState } from "react";
-import { getOrders } from "../services/api";
+import { getOrders, createOrder } from "../services/api";
 import { useOrder } from "../context/OrderContext";
+import { useRouter } from "next/router";
 
 const OrderPage: React.FC = () => {
   const { order, addToOrder, removeOneFromOrder, clearOrder } = useOrder();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchOrder() {
@@ -44,6 +46,19 @@ const OrderPage: React.FC = () => {
 
   const total = order.reduce((sum, item) => sum + (item.price || 0), 0);
 
+  const handleOrder = async () => {
+    try {
+      const items = order.map((item) => item.id);
+      const response = await createOrder({ items });
+      localStorage.setItem("orderId", response.order.id);
+      clearOrder();
+      router.push("/eta");
+    } catch (err) {
+      setError("Kunde inte skicka beställning!");
+      console.error("Order error:", err);
+    }
+  };
+  // Hantera laddning, fel och tom order
   if (loading) return <div className="p-4">Laddar beställning...</div>;
   if (error) return <div className="p-4 text-red-500">Fel: {error}</div>;
   if (!order || order.length === 0)
@@ -54,7 +69,6 @@ const OrderPage: React.FC = () => {
       <div className="w-full max-w-xs bg-white rounded-xl shadow-lg p-4">
         {/* Cart header */}
         <div className="flex justify-between items-center mb-4">
-
           {/* Cart icon */}
           <svg width={32} height={32} fill="#444" viewBox="0 0 24 24">
             <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.293-2.707l1.414 1.414c.195.195.451.293.707.293h12c.256 0 .512-.098.707-.293l1.414-1.414c.391-.391.391-1.023 0-1.414l-1.414-1.414c-.195-.195-.451-.293-.707-.293h-12c-.256 0-.512.098-.707.293l-1.414 1.414c-.391.391-.391 1.023 0 1.414z" />
@@ -107,7 +121,7 @@ const OrderPage: React.FC = () => {
         {/* Button */}
         <button
           className="w-full mt-4 bg-[#383636] text-white font-bold py-3 rounded text-lg hover:bg-[#222] transition"
-          onClick={clearOrder}
+          onClick={handleOrder}
         >
           TAKE MY MONEY!
         </button>
