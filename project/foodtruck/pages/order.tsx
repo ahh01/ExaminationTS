@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getOrders, createOrder } from "../services/api";
 import { useOrder } from "../context/OrderContext";
 import { useRouter } from "next/router";
+import CartIcon from "../components/CartIcon";
 
 const OrderPage: React.FC = () => {
   const { order, addToOrder, removeOneFromOrder, clearOrder } = useOrder();
@@ -70,9 +71,7 @@ const OrderPage: React.FC = () => {
         {/* Cart header */}
         <div className="flex justify-between items-center mb-4">
           {/* Cart icon */}
-          <svg width={32} height={32} fill="#444" viewBox="0 0 24 24">
-            <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.293-2.707l1.414 1.414c.195.195.451.293.707.293h12c.256 0 .512-.098.707-.293l1.414-1.414c.391-.391.391-1.023 0-1.414l-1.414-1.414c-.195-.195-.451-.293-.707-.293h-12c-.256 0-.512.098-.707.293l-1.414 1.414c-.391.391-.391 1.023 0 1.414z" />
-          </svg>
+          <CartIcon count={order.length} onClick={() => router.push("/menu")} />
         </div>
         {/* Order items */}
         <div className="space-y-2">
