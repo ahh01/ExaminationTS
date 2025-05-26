@@ -21,7 +21,6 @@ export interface OrderResponse {
   order: Order;
 }
 
-// Lägg till fler typer här, t.ex. för meny
 export interface MenuItem {
   id: number;
   type: string;

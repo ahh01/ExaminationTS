@@ -27,7 +27,7 @@ const MenuPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="min-h-screen bg-[#4B8A76] flex flex-col items-center py-6 px-2">
+    <div className="bg-[#4B8A76] flex flex-col items-center p-6 min-h-screen">
       {/* CartIcon ovanför kortet och rubriken */}
       <div className="w-full max-w-xs flex justify-end mb-2">
         <CartIcon count={order.length} onClick={() => router.push("/order")} />
@@ -36,11 +36,11 @@ const MenuPage: React.FC = () => {
         <h1 className="text-white text-2xl font-bold mb-2">MENY</h1>
         <div className="space-y-6">
           {/* Wonton kort */}
-          <div className="bg-[#5e5a5a] rounded-xl p-6 w-full">
+          <div className="bg-[#5e5a5a] rounded w-full">
             {wonton.map((item, idx) => (
               <React.Fragment key={item.id}>
                 <div
-                  className="mb-4 hover:bg-[#383636] transition duration-200 rounded px-2 py-1 cursor-pointer"
+                  className="hover:bg-[#383636] transition duration-200 rounded p-4 cursor-pointer"
                   onClick={() => addToOrder(item)}
                 >
                   <div className="flex items-center w-full">
@@ -67,7 +67,7 @@ const MenuPage: React.FC = () => {
           </div>
 
           {/* Dipsås kort */}
-          <div className="bg-[#5e5a5a] rounded-xl shadow-lg p-4">
+          <div className="bg-[#5e5a5a] rounded shadow-lg p-4">
             <div className="flex items-center mb-2 w-full">
               <h2 className="text-white text-lg font-bold text-shadow-sm whitespace-nowrap">
                 DIPSÅS
@@ -91,7 +91,7 @@ const MenuPage: React.FC = () => {
           </div>
 
           {/* Dricka kort */}
-          <div className="bg-[#5e5a5a] rounded-xl shadow-lg p-4">
+          <div className="bg-[#5e5a5a] rounded shadow-lg p-4">
             <div className="flex items-center mb-2 w-full">
               <h2 className="text-white text-lg font-bold whitespace-nowrap">
                 DRICKA

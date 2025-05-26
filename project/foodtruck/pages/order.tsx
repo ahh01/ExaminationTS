@@ -70,8 +70,8 @@ const OrderPage: React.FC = () => {
       <div className="w-full max-w-xs bg-white rounded-xl shadow-lg p-4">
         {/* Cart header */}
         <div className="flex justify-between items-center mb-4">
-          {/* Cart icon */}
-          <CartIcon count={order.length} onClick={() => router.push("/menu")} />
+          <div /> 
+          <CartIcon count={0}/>
         </div>
         {/* Order items */}
         <div className="space-y-2">

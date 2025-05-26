@@ -4,7 +4,7 @@ import { MenuItem } from "../types/types";
 type OrderContextType = {
   order: MenuItem[];
   addToOrder: (item: MenuItem) => void;
-  removeOneFromOrder: (item: MenuItem) => void; // Lägg till denna
+  removeOneFromOrder: (item: MenuItem) => void; 
   clearOrder: () => void;
 };
 

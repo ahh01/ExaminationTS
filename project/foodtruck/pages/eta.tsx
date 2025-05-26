@@ -49,8 +49,6 @@ const EtaPage: React.FC = () => {
         alt="Box"
         width={300}
         height={300}
-        className="mb-6"
-        priority
       />
       <h2 className="text-white text-2xl font-bold text-center mb-2">
         DINA WONTONS
@@ -60,17 +58,17 @@ const EtaPage: React.FC = () => {
       <div className="text-white text-lg font-bold mb-1">
         ETA {getEtaMinutes(order.eta)} MIN
       </div>
-      <div className="text-white text-sm font-bold mb-6 tracking-widest">
+      <div className="text-white text-xs font-bold mb-6 tracking-widest">
         #{order.id?.toUpperCase()}
       </div>
       <button
-        className="w-full max-w-xs border border-white rounded-md py-2 text-white font-bold mb-3 transition hover:bg-white hover:text-[#5B5351]"
+        className="w-full max-w-xs border border-white rounded py-3 text-white font-bold mb-3 transition hover:bg-white hover:text-[#5B5351]"
         onClick={() => router.push("/receipt")}
       >
         SE KVITTO
       </button>
       <button
-        className="w-full max-w-xs bg-[#222] rounded-md py-2 text-white font-bold transition hover:bg-[#444]"
+        className="w-full max-w-xs bg-[#222] rounded py-3 text-white font-bold transition hover:bg-[#444]"
         onClick={() => router.push("/")}
       >
         GÖR EN NY BESTÄLLNING
